@@ -1,3 +1,9 @@
+require 'date'
+require 'pry'
+require 'awesome_print'
+
+require_relative "../lib/rooms.rb" 
+require_relative "../lib/hotel_manager.rb"
 
 
 module Hotel
