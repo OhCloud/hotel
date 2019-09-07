@@ -9,7 +9,7 @@ require_relative "../lib/hotel_manager.rb"
 
 module Hotel
   
-  class Reservation
+  class Reservation < Date_Range
     attr_reader :room_id, :checkin_date, :checkout_date, :cost 
     
     def initialize(room_id, checkin_date, checkout_date, cost = 200)
@@ -19,8 +19,9 @@ module Hotel
       @cost = cost 
     end
     
-    
-    
+    def cost_of_stay
+      return length_of_stay * @cost
+    end
     
     
   end # end of class

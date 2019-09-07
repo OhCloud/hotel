@@ -26,6 +26,10 @@ module Hotel
       end
     end
     
+    def length_of_stay
+      return @checkout_date - @checkin_date
+    end
+    
     def date_range_contains?(date)
       if date >= @checkin_date &&
         date < @checkout_date 

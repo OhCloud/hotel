@@ -40,7 +40,7 @@ describe "Date_Range class" do
     end
   end
   
-  describe "date range contains date" do
+  describe "date range contains correct date" do
     
     it "will return true if date is in date range" do
       date = Date.new(2019, 12, 16)
