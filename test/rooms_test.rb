@@ -1,6 +1,8 @@
 require 'date'
 
+
 require_relative 'test_helper.rb'
+
 
 describe "Room class" do
   
