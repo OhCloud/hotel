@@ -2,10 +2,8 @@ require 'date'
 require 'pry'
 require 'awesome_print'
 
-
 require_relative "../lib/date_range.rb"
 require_relative "../lib/hotel_manager.rb"
-
 
 module Hotel 
   class Hotel_Manager
