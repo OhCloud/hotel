@@ -36,7 +36,7 @@ module Hotel
       end
       reservation = Hotel::Reservation.new(room, checkin_date, checkout_date)
       @reservations << reservation
-      return @reservations
+      return reservation
     end
     
     def room_avail?(checkin_date, checkout_date)
