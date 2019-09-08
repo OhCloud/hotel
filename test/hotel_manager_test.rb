@@ -103,4 +103,40 @@ describe "date of reservation" do
   end
 end
 
+describe "creating a block room reservation" do
+  before do
+    @hotel = Hotel::Hotel_Manager.new(3)
+    @checkin_date = Date.new(2019, 12, 14)
+    @checkout_date = Date.new(2019, 12, 16)
+    
+  end
+  
+  it "will raise an Argument Error if there are not enough rooms available" do
+    @block = Hotel::Block.new(@checkin_date, @checkout_date, 100, [1, 2, 3])
+    expect{@hotel.create_block_room(@checkin_date, @checkout_date)}.must_raise ArgumentError
+  end
+  
+  it "will create a reservation block" do
+    expect(@hotel.create_block_room(@checkin_date, @checkout_date, 100, [1, 2, 3])).must_be_kind_of Hotel::Block
+  end
+end # end of block room reservation
+
+describe "reserving a room from block" do
+  before do
+    @hotel = Hotel::Hotel_Manager.new(3)
+    @checkin_date = Date.new(2019, 12, 14)
+    @checkout_date = Date.new(2019, 12, 16)
+    @block = Hotel::Block.new(@checkin_date, @checkout_date, 100, [1, 2, 3])
+    @reservation = @hotel.reserve_from_block(@block)
+  end
+  
+  it "can reserve a room from the block" do 
+    expect(@reservation).must_be_kind_of Hotel::Reservation
+  end
+
+  it "added block reservation to all reservations" do
+    expect(@hotel.reservations[0]).must_be_kind_of Hotel::Reservation
+    expect(@hotel.reservations[0].room_id).must_equal 3
+  end
+end # end of reserve from block
 end # end of module

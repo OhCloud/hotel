@@ -7,10 +7,10 @@ require 'awesome_print'
 describe "Block Class" do
   describe "Block Class Initializer" do
     before do
-      @hotel = Hotel::Hotel_Manager.new(5)
-      checkin_date = Date.new(2019, 12, 14)
-      checkout_date = Date.new(2019, 12, 16)
-      @block = Hotel::Block.new(checkin_date, checkout_date, 100, [1, 2, 3])
+      @hotel = Hotel::Hotel_Manager.new(10)
+      @checkin_date = Date.new(2019, 12, 14)
+      @checkout_date = Date.new(2019, 12, 16)
+      @block = Hotel::Block.new(@checkin_date, @checkout_date, 100, [1, 2, 3])
     end
     
     it "is an instance of a block of rooms" do
@@ -20,6 +20,11 @@ describe "Block Class" do
     it "will remove block room from available room in hotel" do
       expect(@hotel.available_rooms).wont_include 2
     end
+    
+    it "will raise an Argument Error if block requested is more than 5" do 
+      expect{block = Hotel::Block.new(@checkin_date, @checkout_date, 100, [4, 5, 6, 7, 8, 9])}.must_raise ArgumentError
+    end
+    
   end #end of block class initializer
   
   describe "available rooms" do
@@ -52,6 +57,10 @@ describe "Block Class" do
     
     it "will raise an Argument Error if there is no available room" do 
       expect{@block.reserve_room}.must_raise ArgumentError
+    end
+    
+    it "will remove room from list of available rooms" do
+      expect(@hotel.available_rooms).wont_include 2
     end
     
   end #end of describe block

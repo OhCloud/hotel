@@ -70,9 +70,27 @@ module Hotel
       return avail_rooms
     end
     
+    def create_block_room(checkin_date, checkout_date, cost, room_range) #will talk to block
+      rooms = room_avail?(checkin_date, checkout_date)
+      
+      if rooms.length < room_range.length 
+        raise ArgumentError, "there are not enough rooms, sorry"
+      end
+      
+      block = Block.new(checkin_date, checkout_date, cost, room_range)
+
+      @block_reservations << block
+      return block
+    end
     
-    
-    
+    def reserve_from_block(block)
+      room = block.reserve_room
+      reservation = Reservation.new(room, block.checkin_date, block.checkout_date, block.discounted_rate)
+      
+      @reservations << reservation
+
+      return reservation
+    end
     
   end # end of class
 end # end of module

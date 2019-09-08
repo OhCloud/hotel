@@ -11,7 +11,11 @@ module Hotel
     attr_reader :rooms_requested, :available_rooms, :discounted_rate, :reserved_rooms
     
     def initialize(checkin_date, checkout_date,discounted_rate, rooms_requested)
-      @rooms_requested = rooms_requested
+      if rooms_requested.length > 5
+        raise ArgumentError, "Sorry, blocks cant be more than 5 rooms"
+      else
+        @rooms_requested = rooms_requested
+      end
       @available_rooms = rooms_requested.dup #
       @discounted_rate = discounted_rate
       @reserved_rooms = []
