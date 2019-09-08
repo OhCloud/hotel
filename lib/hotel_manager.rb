@@ -23,5 +23,9 @@ module Hotel
       end
     end
     
+    def date_of_reservation(date)
+      
+    end
+    
   end # end of class
 end # end of module
