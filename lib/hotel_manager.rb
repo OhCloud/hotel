@@ -15,32 +15,63 @@ module Hotel
       else
         @all_rooms = [*1..hotel_size]
       end
-      @available_rooms = available_rooms
-      @reservations = reservations
-      @block_reservations = block_reservations
-      
+      @available_rooms = []
+      @reservations = []
+      @block_reservations = []
     end
     
-    # def room_count 
-    #   room_count = 20
-    #   room_count.times do |i|
-    #     @all_rooms << Hotel::Rooms.new(room_id: i+1, cost: 200)
-    #   end
-    # end
-    
     def date_of_reservation(date)
-      #come back
+      @reservations.select do |reservation|
+        reservation.date_range_contains?(date)
+      end
     end
     
     def add_reservation(room, checkin_date, checkout_date)
       if !@all_rooms.include?(room)
-        raise ArgumentError, "room no, not there"
+        raise ArgumentError, "room doesnt exist"
       end
       
-      
+      if !room_avail?(checkin_date, checkout_date).include?(room)
+        raise ArgumentError, "room is not available"
+      end
+      reservation = Hotel::Reservation.new(room, checkin_date, checkout_date)
+      @reservations << reservation
+      return @reservations
     end
     
-    
+    def room_avail?(checkin_date, checkout_date)
+      #create date range
+      #create array of avail_rooms
+      #array for overlaps
+      date_range = Date_Range.new(checkin_date, checkout_date)
+      
+      avail_rooms = @all_rooms
+      
+      # block_overlaps = @block_reservations.select do |block|
+      #   block.overlaps?(date_range)
+      # end
+      
+      # rooms_blocked = block_overlaps.reduce([]) do |list, block|
+      #   list += block.rooms 
+      # end
+      
+      # avail_rooms -= rooms_blocked
+      
+      rooms_that_overlap = @reservations.select do |reservation|
+        reservation.overlaps?(date_range)
+      end 
+      
+      rooms_reserved = rooms_that_overlap.map do |reservation|
+        reservation.room_id
+      end
+      
+      avail_rooms -= rooms_reserved
+      
+      if avail_rooms.empty? 
+        raise ArgumentError, "error, error, no available rooms!" 
+      end
+      return avail_rooms
+    end
     
     
     
