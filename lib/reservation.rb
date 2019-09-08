@@ -24,5 +24,6 @@ module Hotel
     end
     
     
+    
   end # end of class
 end # end of module

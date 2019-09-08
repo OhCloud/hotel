@@ -8,17 +8,34 @@ describe "Hotel Manager class" do
   
   describe "Hotel Manager Initializer" do
     before do
-      @all_rooms = Hotel::Hotel_Manager.new()
+      @hotel = Hotel::Hotel_Manager.new(3)
     end
     
     it "is an instance of room" do
-      expect(@all_rooms).must_be_kind_of Hotel::Hotel_Manager
+      expect(@hotel).must_be_kind_of Hotel::Hotel_Manager
     end
     
     it "can give me a list of all of the rooms in the hotel" do
-      expect(@all_rooms.room_count).must_equal 20
+      expect(@hotel.all_rooms.length).must_equal 3
+    end
+  end # end of describe hotel
+  
+  describe "hotel manager add reservation" do
+    before do
+      @hotel = Hotel::Hotel_Manager.new(3)
+      @checkin_date = Date.new(2019, 12, 14)
+      @checkout_date = Date.new(2019, 12, 16)
+    end
+    
+    it "will check to see If a room exist" do
+      expect{@hotel.add_reservation(4, @checkin_date, @checkout_date)}.must_raise ArgumentError
     end
     
     
-  end # end of class
+    
+  end
+  
+  
+  
+  
 end # end of module
