@@ -40,9 +40,6 @@ module Hotel
     end
     
     def room_avail?(checkin_date, checkout_date)
-      #create date range
-      #create array of avail_rooms
-      #array for overlaps
       date_range = Date_Range.new(checkin_date, checkout_date)
       
       avail_rooms = @all_rooms
