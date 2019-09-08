@@ -23,7 +23,5 @@ module Hotel
       return length_of_stay * @cost
     end
     
-    
-    
   end # end of class
 end # end of module

@@ -44,15 +44,15 @@ module Hotel
       
       avail_rooms = @all_rooms
       
-      # block_overlaps = @block_reservations.select do |block|
-      #   block.overlaps?(date_range)
-      # end
+      block_overlaps = @block_reservations.select do |block|
+        block.overlaps?(date_range)
+      end
       
-      # rooms_blocked = block_overlaps.reduce([]) do |list, block|
-      #   list += block.rooms 
-      # end
+      rooms_blocked = block_overlaps.reduce([]) do |list, block|
+        list += block.rooms 
+      end
       
-      # avail_rooms -= rooms_blocked
+      avail_rooms -= rooms_blocked
       
       rooms_that_overlap = @reservations.select do |reservation|
         reservation.overlaps?(date_range)
