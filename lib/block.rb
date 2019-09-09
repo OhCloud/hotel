@@ -16,9 +16,10 @@ module Hotel
       else
         @rooms_requested = rooms_requested
       end
-      @available_rooms = rooms_requested.dup #
+      @available_rooms = rooms_requested.dup 
       @discounted_rate = discounted_rate
       @reserved_rooms = []
+
       super(checkin_date, checkout_date) 
     end
     
@@ -36,11 +37,6 @@ module Hotel
       @reserved_rooms << reserved_room
       return reserved_room
     end
-    
-    
-    
-    
-    
     
   end #end of block
 end #end of module

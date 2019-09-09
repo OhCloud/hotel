@@ -1,0 +1,9 @@
+In this file, make a short list of the changes that you could make, such as naming conventions, etc.
+
+I went back and forth alot between pro scaffolding and vs scaffolding. I also went back and forth alot between having alot of classes and having two classes. I fear "to tightly coupling" and to play it safe, I have 4 classes. I started with 3, went to 2, added one and then added another, ending with 4, color me surprised.
+
+I really considered creating a csv to load from but, I dont think thats a possibility per the project. It couldve been fun(hard) to create and use it though I should definitely think that through a bit more because maybe the refactor wouldnt be worth the time? My tutor mentioned it early on and it did seem both easier and very straightforward and also intimidating bc I know I'm not super comfortable with reading (or writing) to csvs.
+
+I should definitley go back and update the ArgumentErrors, I know I had to much fun with them. I see how giving myself a giggle would be a problem to someone else reviewing my code, especially if those errors were raised. 
+
+
