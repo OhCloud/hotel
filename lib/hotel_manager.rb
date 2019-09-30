@@ -11,7 +11,7 @@ module Hotel
     
     def initialize(hotel_size)
       if hotel_size > 20 
-        raise ArgumentError, "sorry charlie, cant do it, 20 rooms max ayyye."
+        raise ArgumentError, "So Sorry, there are only 20 rooms available at Adas Hotel."
       else
         @all_rooms = [*1..hotel_size]
       end
@@ -28,11 +28,11 @@ module Hotel
     
     def add_reservation(room, checkin_date, checkout_date)
       if !@all_rooms.include?(room)
-        raise ArgumentError, "room doesnt exist"
+        raise ArgumentError, "So sorry but this room does not exist"
       end
       
       if !room_avail?(checkin_date, checkout_date).include?(room)
-        raise ArgumentError, "room is not available"
+        raise ArgumentError, "So sorry, this room is not available"
       end
       reservation = Hotel::Reservation.new(room, checkin_date, checkout_date)
       @reservations << reservation
@@ -65,7 +65,7 @@ module Hotel
       avail_rooms -= rooms_reserved
       
       if avail_rooms.empty? 
-        raise ArgumentError, "error, error, no available rooms!" 
+        raise ArgumentError, "Please feel free to check anyone of our other locations as rooms are not currently available" 
       end
       return avail_rooms
     end
@@ -74,7 +74,7 @@ module Hotel
       rooms = room_avail?(checkin_date, checkout_date)
       
       if rooms.length < room_range.length 
-        raise ArgumentError, "there are not enough rooms, sorry"
+        raise ArgumentError, "So sorry, there are not enough rooms available"
       end
       
       block = Block.new(checkin_date, checkout_date, cost, room_range)
